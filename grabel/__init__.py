@@ -53,8 +53,10 @@ class Grabel(object):
         temp = "temp.png"
         self.mnc.screen_shot()
         self.mnc.export_screen(temp)
+        obj = cv2.imread(temp)
+        # remove temp file
         os.remove(temp)
-        return cv2.imread(temp)
+        return obj
 
     @staticmethod
     def node_filter(tree: Tree, rules: dict) -> typing.List[Node]:
