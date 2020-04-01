@@ -1,13 +1,20 @@
 from grabel import Grabel
 import cv2
 import json
+import os
 
-with open("r.json") as f:
+
+file_name = "r.json"
+if not os.path.isfile(file_name):
+    with open(file_name, "w+") as f:
+        f.write("[]")
+
+with open(file_name) as f:
     json_list = json.load(f)
 
 # init your android device
-grab = Grabel("123456F")
-png_id = 4
+grab = Grabel("123456")
+png_id = 1
 png_name = f"{png_id}.png"
 
 # a tree view
@@ -32,7 +39,7 @@ final["annotations"] = []
 for each in node_list:
     each_dict = dict()
     top_left, bottom_right = grab.get_node_location(each)
-    each_dict["bbox"] = [*top_left, *bottom_right]
+    each_dict["bbox"] = [int(i) for i in [*top_left, *bottom_right]]
     # todo: when using this data, you need to set it to `BoxMode.XYXY_ABS`
     # from detectron2.structures import BoxMode
     each_dict["bbox_mode"] = None
