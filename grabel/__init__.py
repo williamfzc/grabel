@@ -84,3 +84,11 @@ class Grabel(object):
             int(left_top[1]) : int(right_bottom[1]),
             int(left_top[0]) : int(right_bottom[0]),
         ]
+
+    def dump_csv(self, pic_name: str, node_list: typing.List[Node], type_: str) -> typing.List[str]:
+        lines = list()
+        for each in node_list:
+            location = self.get_node_location(each)
+            line = ",".join([pic_name, *location[0], *location[1], type_])
+            lines.append(line)
+        return lines
