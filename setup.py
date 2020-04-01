@@ -32,7 +32,7 @@ setup(
         "fastcap",
         "minadb",
         "xmltodict",
-        "planter",
+        "planter>=0.2.2",
         "opencv-python",
         "numpy",
     ],
